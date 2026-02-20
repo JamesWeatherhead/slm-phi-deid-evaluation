@@ -1,0 +1,106 @@
+{
+  "models": [
+    {
+      "slug": "phi4-mini",
+      "full_name": "Microsoft Phi-4 Mini Instruct",
+      "parameters": "3.8B",
+      "family": "Microsoft Phi",
+      "company": "Microsoft",
+      "architecture": "Dense decoder-only Transformer, GQA, shared input/output embedding",
+      "training_tokens": "5T",
+      "license": "MIT",
+      "ollama_tag": "phi4-mini:latest",
+      "sha256": null,
+      "quantization": "Q4_K_M",
+      "context_window": 131072,
+      "num_predict": 1024,
+      "pull_date": null,
+      "ollama_version": null,
+      "notes": "Successor to Phi-3 Mini. Q4_K_M is the default Ollama quantization. Pin exact digest at pull time via 'ollama show phi4-mini --modelfile'."
+    },
+    {
+      "slug": "llama32-3b",
+      "full_name": "Meta Llama 3.2 3B Instruct",
+      "parameters": "3.21B",
+      "family": "Meta Llama",
+      "company": "Meta",
+      "architecture": "Dense decoder-only Transformer, GQA",
+      "training_tokens": "9T",
+      "license": "Llama 3.2 Community",
+      "ollama_tag": "llama3.2:3b-instruct-q4_K_M",
+      "sha256": null,
+      "quantization": "Q4_K_M",
+      "context_window": 131072,
+      "num_predict": 1024,
+      "pull_date": null,
+      "ollama_version": null,
+      "notes": "Meta's instruction-tuned 3B model. Strong system prompt adherence per Meta documentation."
+    },
+    {
+      "slug": "qwen3-4b",
+      "full_name": "Alibaba Qwen 3 4B",
+      "parameters": "4.02B",
+      "family": "Alibaba Qwen",
+      "company": "Alibaba",
+      "architecture": "Dense decoder-only Transformer, GQA (32Q/8KV heads)",
+      "training_tokens": "36T",
+      "license": "Apache 2.0",
+      "ollama_tag": "qwen3:4b",
+      "sha256": null,
+      "quantization": "Q4_K_M",
+      "context_window": 32768,
+      "context_window_extended": 262144,
+      "num_predict": 1024,
+      "pull_date": null,
+      "ollama_version": null,
+      "special_notes": "Thinking mode disabled via /no_think prefix in all prompts for fair comparison. presence_penalty=1.5 applied to prevent known looping issue.",
+      "notes": "Alibaba's Qwen 3 generation 4B model. Supports thinking mode but it is disabled for this study to ensure fair latency and output format comparison across models."
+    },
+    {
+      "slug": "gemma3-4b",
+      "full_name": "Google Gemma 3 4B",
+      "parameters": "4.0B",
+      "family": "Google Gemma",
+      "company": "Google",
+      "architecture": "Dense decoder-only Transformer, multimodal backbone (vision adapter present but unused)",
+      "training_tokens": "Not publicly disclosed",
+      "license": "Gemma license",
+      "ollama_tag": "gemma3:4b",
+      "sha256": null,
+      "quantization": "Q4_K_M",
+      "context_window": 131072,
+      "num_predict": 1024,
+      "pull_date": null,
+      "ollama_version": null,
+      "notes": "Google's Gemma 3 generation 4B model. Vision adapter is present in the architecture but unused for text-only de-identification tasks."
+    }
+  ],
+  "quantization_sensitivity": [
+    {
+      "slug": "phi4-mini-q4_0",
+      "base_model": "phi4-mini",
+      "quantization": "Q4_0",
+      "ollama_tag": "phi4-mini:q4_0",
+      "sha256": null
+    },
+    {
+      "slug": "phi4-mini-q4_k_m",
+      "base_model": "phi4-mini",
+      "quantization": "Q4_K_M",
+      "ollama_tag": "phi4-mini:latest",
+      "sha256": null
+    },
+    {
+      "slug": "phi4-mini-q8_0",
+      "base_model": "phi4-mini",
+      "quantization": "Q8_0",
+      "ollama_tag": "phi4-mini:q8_0",
+      "sha256": null
+    }
+  ],
+  "_notes": {
+    "tag_verification": "All ollama_tag values should be verified at pull time. Run 'ollama list' after pulling to confirm exact tags and digests.",
+    "sha256_population": "After pulling each model, run 'ollama show <tag> --modelfile' and record the SHA256 digest for reproducibility.",
+    "model_lineup_rationale": "Four models selected for: (1) parameter parity (3.2B-4.0B range), (2) diverse vendors (Microsoft, Meta, Alibaba, Google), (3) diverse architectures and training data scales (5T-36T tokens), (4) all available in Q4_K_M quantization via Ollama."
+  }
+}

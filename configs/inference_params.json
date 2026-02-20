@@ -1,0 +1,45 @@
+{
+  "default": {
+    "temperature": 0,
+    "top_k": 1,
+    "top_p": 1.0,
+    "seed": 42,
+    "num_predict": 1024,
+    "num_ctx": 4096,
+    "stream": false,
+    "keep_alive": "10m"
+  },
+  "overrides": {
+    "chain-of-thought": {
+      "num_predict": 2048,
+      "num_ctx": 8192,
+      "notes": "P5 requires extended output for REASONING/REDACTIONS/OUTPUT sections. 2048 output tokens accommodates queries with 15+ candidate entities. 8192 context prevents any possible input truncation."
+    }
+  },
+  "model_overrides": {
+    "qwen3-4b": {
+      "presence_penalty": 1.5,
+      "num_ctx": 32768,
+      "notes": "presence_penalty=1.5 prevents a known repetition/looping issue in Qwen 3 at temperature=0. num_ctx=32768 matches the native context window (32K base, extendable to 256K with YaRN but not used here). The /no_think prefix is injected by the runner, not set here."
+    }
+  },
+  "execution": {
+    "ollama_endpoint": "/api/chat",
+    "timeout_seconds": 120,
+    "max_retries": 2,
+    "warmup_queries": 10,
+    "cooldown_between_models_seconds": 30,
+    "keep_alive_flush": 0,
+    "runs_per_config": 5
+  },
+  "canary": {
+    "query": "Patient John Doe, MRN 123456, was seen at Springfield General Hospital on January 15, 2024 for evaluation of type 2 diabetes. His A1c was 8.2% and blood pressure was 142/88.",
+    "expected_phi": ["John Doe", "123456", "Springfield General Hospital", "January 15, 2024"],
+    "positions": [0, 1052],
+    "notes": "Fixed canary query inserted at positions 0 and 1052 (after last real query). If canary results differ between position 0 and 1052, context drift has occurred. Canary results are logged but excluded from all metrics."
+  },
+  "determinism_seeds": {
+    "notes": "If the variance pilot determines outputs are NOT byte-identical, use different seeds per run instead of repeating seed=42.",
+    "alternative_seeds": [42, 123, 456, 789, 1024]
+  }
+}

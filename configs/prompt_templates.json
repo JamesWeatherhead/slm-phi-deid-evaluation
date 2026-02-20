@@ -1,0 +1,122 @@
+{
+  "P1_zero_shot_minimal": {
+    "name": "Zero-Shot Minimal",
+    "slug": "zero-shot-minimal",
+    "system_prompt": "You are a clinical text de-identification tool.",
+    "user_template": "Remove all Protected Health Information (PHI) from the following text. Replace names with [NAME], locations with [LOCATION], dates with [DATE], medical record numbers with [MRN], phone numbers with [PHONE], email addresses with [EMAIL], and other identifiers with [ID]. Output ONLY the de-identified text.\n\n{query}",
+    "expected_output_format": "De-identified text with PHI replaced by tags. No preamble or explanation.",
+    "num_passes": 1,
+    "output_parser": "direct",
+    "held_out_indices": [],
+    "content_hash": "47e22fea54efc0d2eab2222a27517792d9b89df60fc55180bb7a88e6663a41ba"
+  },
+  "P2_zero_shot_structured": {
+    "name": "Zero-Shot Structured",
+    "slug": "zero-shot-structured",
+    "system_prompt": "You are a clinical text de-identification system. Your sole function is to replace Protected Health Information (PHI) with category tags while preserving all clinical content exactly as written.\n\nYou must output ONLY the transformed text. Do not add explanations, labels, or commentary. The first character of your output must be the first character of the transformed text.",
+    "user_template": "De-identify the following clinical text by replacing PHI with the appropriate tags.\n\nPHI CATEGORIES TO REPLACE:\n- Patient names, family member names, clinician names -> [NAME]\n- Hospital names, clinic names, street addresses, cities, counties -> [LOCATION]\n- Specific dates containing a day or month (not year alone) -> [DATE]\n- Medical record numbers, chart numbers, account numbers -> [MRN]\n- Phone numbers, fax numbers -> [PHONE]\n- Email addresses -> [EMAIL]\n- Social Security numbers, health plan IDs, device serial numbers, any other unique identifiers -> [ID]\n\nDO NOT REPLACE (preserve exactly as written):\n- Disease names and diagnoses (e.g., diabetes, COPD, MS, AFib, GERD)\n- Medication names and dosages (e.g., lisinopril 10mg, atorvastatin)\n- Lab values and vital signs (e.g., creatinine 2.1, BP 140/90)\n- Medical procedures and surgeries (e.g., bypass surgery, hysterectomy)\n- Clinical scores and staging (e.g., Framingham Risk Score, NYHA Class III)\n- Ages under 90 (e.g., \"34-year-old\", \"65yo\", \"a patient in her 70s\")\n- Years alone without day or month (e.g., \"in 2021\", \"since 2018\")\n- Race, ethnicity, and sex descriptors (e.g., \"African American male\")\n- Body measurements and physical descriptions\n- Generic institutional references without specific names (e.g., \"our clinic\", \"the ER\")\n\nRULES:\n1. Replace each PHI span with exactly one tag from the categories above\n2. Keep ALL non-PHI text exactly as written, character for character\n3. Do not paraphrase, summarize, rewrite, or add any new content\n4. If uncertain whether something is PHI, do NOT tag it (preserve the original text)\n5. Output ONLY the de-identified text\n\nText: {query}",
+    "expected_output_format": "De-identified text with PHI replaced by tags. All non-PHI content preserved verbatim.",
+    "num_passes": 1,
+    "output_parser": "direct",
+    "held_out_indices": [],
+    "content_hash": "f51ad16fe8a00884ee02ad22df205157909e0d0ca4420de42b95564b7201aa1e"
+  },
+  "P2a_structured_aggressive": {
+    "name": "Zero-Shot Structured (Aggressive Tagging Ablation)",
+    "slug": "zero-shot-structured-aggressive",
+    "system_prompt": "You are a clinical text de-identification system. Your sole function is to replace Protected Health Information (PHI) with category tags while preserving all clinical content exactly as written.\n\nYou must output ONLY the transformed text. Do not add explanations, labels, or commentary. The first character of your output must be the first character of the transformed text.",
+    "user_template": "De-identify the following clinical text by replacing PHI with the appropriate tags.\n\nPHI CATEGORIES TO REPLACE:\n- Patient names, family member names, clinician names -> [NAME]\n- Hospital names, clinic names, street addresses, cities, counties -> [LOCATION]\n- Specific dates containing a day or month (not year alone) -> [DATE]\n- Medical record numbers, chart numbers, account numbers -> [MRN]\n- Phone numbers, fax numbers -> [PHONE]\n- Email addresses -> [EMAIL]\n- Social Security numbers, health plan IDs, device serial numbers, any other unique identifiers -> [ID]\n\nDO NOT REPLACE (preserve exactly as written):\n- Disease names and diagnoses (e.g., diabetes, COPD, MS, AFib, GERD)\n- Medication names and dosages (e.g., lisinopril 10mg, atorvastatin)\n- Lab values and vital signs (e.g., creatinine 2.1, BP 140/90)\n- Medical procedures and surgeries (e.g., bypass surgery, hysterectomy)\n- Clinical scores and staging (e.g., Framingham Risk Score, NYHA Class III)\n- Ages under 90 (e.g., \"34-year-old\", \"65yo\", \"a patient in her 70s\")\n- Years alone without day or month (e.g., \"in 2021\", \"since 2018\")\n- Race, ethnicity, and sex descriptors (e.g., \"African American male\")\n- Body measurements and physical descriptions\n- Generic institutional references without specific names (e.g., \"our clinic\", \"the ER\")\n\nRULES:\n1. Replace each PHI span with exactly one tag from the categories above\n2. Keep ALL non-PHI text exactly as written, character for character\n3. Do not paraphrase, summarize, rewrite, or add any new content\n4. If uncertain whether something is PHI, DO replace it with the best matching tag\n5. Output ONLY the de-identified text\n\nText: {query}",
+    "expected_output_format": "De-identified text with PHI replaced by tags. All non-PHI content preserved verbatim.",
+    "num_passes": 1,
+    "output_parser": "direct",
+    "held_out_indices": [],
+    "ablation_of": "P2_zero_shot_structured",
+    "ablation_variable": "uncertainty_instruction",
+    "ablation_description": "Identical to P2 except Rule 4 changed from 'do NOT tag' to 'DO replace it'. Isolates the effect of the conservative vs. aggressive uncertainty instruction while holding structured definitions constant.",
+    "content_hash": "e6bb0eab7c86a20387c9824bd83cfefb4a77a8536dc486875b72bcaa2dc5e6da"
+  },
+  "P3_few_shot": {
+    "name": "Few-Shot (3 Synthetic Examples)",
+    "slug": "few-shot",
+    "system_prompt": "You are a clinical text de-identification system. Replace Protected Health Information (PHI) with tags while preserving all clinical content. Output ONLY the de-identified text.",
+    "user_template": "De-identify clinical text by replacing PHI with the appropriate tags: [NAME], [LOCATION], [DATE], [MRN], [PHONE], [EMAIL], [ID].\n\nDo NOT replace medical terms, diagnoses, medications, lab values, procedures, or ages under 90.\n\nExample 1 (query with multiple PHI types):\nInput: Can you review the cardiac workup results for a 72-year-old male, Mr. Robert K., who was admitted to Riverside Community Hospital on June 8, 2023 with suspected acute coronary syndrome?\nOutput: Can you review the cardiac workup results for a 72-year-old male, [NAME], who was admitted to [LOCATION] on [DATE] with suspected acute coronary syndrome?\n\nExample 2 (query with NO PHI; return unchanged):\nInput: What is the recommended initial dose of metformin for newly diagnosed type 2 diabetes in a 58-year-old patient with an eGFR of 65 mL/min? The diagnosis was confirmed in 2022.\nOutput: What is the recommended initial dose of metformin for newly diagnosed type 2 diabetes in a 58-year-old patient with an eGFR of 65 mL/min? The diagnosis was confirmed in 2022.\n\nExample 3 (query with PHI but age under 90 must be preserved):\nInput: What are the current guidelines for managing stage III NSCLC in a 63-year-old woman named Teresa M., who completed chemotherapy at Memorial Oncology Center on September 14, 2022?\nOutput: What are the current guidelines for managing stage III NSCLC in a 63-year-old woman named [NAME], who completed chemotherapy at [LOCATION] on [DATE]?\n\nNow de-identify this text. Output ONLY the result:\n{query}",
+    "expected_output_format": "De-identified text with PHI replaced by tags. No preamble or labels.",
+    "num_passes": 1,
+    "output_parser": "direct",
+    "held_out_indices": [],
+    "synthetic_examples": true,
+    "example_design_notes": "All 3 examples are SYNTHETIC, not drawn from the ASQ-PHI benchmark. This eliminates distributional leakage between prompt exemplars and evaluation queries. Examples cover: (1) multi-PHI positive with age preservation, (2) hard negative with year-only date and clinical values, (3) PHI with age under 90 preservation and facility name. Names, locations, and dates do not overlap with any ASQ-PHI queries.",
+    "content_hash": "f98d4f812440a2c5e36421e7de8befc37544b70c9d3e105dafc7f76040106dd2"
+  },
+  "P4_two_pass_prog": {
+    "name": "Two-Pass: Identify then Redact (Programmatic)",
+    "slug": "two-pass",
+    "system_prompt": "You are a clinical text PHI identification system. Your task is to find Protected Health Information in clinical text and report it in structured JSON format.",
+    "pass1_user_template": "Analyze the following clinical text and identify all Protected Health Information (PHI).\n\nFor each PHI element found, output a JSON object on its own line with these fields:\n- \"text\": the exact PHI string as it appears in the input\n- \"type\": one of NAME, LOCATION, DATE, MRN, PHONE, EMAIL, ID\n\nPHI includes: patient/clinician names, hospital/clinic names, addresses, cities, specific dates with day or month, medical record numbers, phone/fax numbers, email addresses, SSNs, and other unique identifiers.\n\nNOT PHI (do not list): disease names, medications, lab values, procedures, ages under 90, years alone, race/ethnicity.\n\nIf no PHI is found, output exactly: []\n\nOutput ONLY the JSON objects, one per line. No other text.\n\nText: {query}",
+    "pass2_mode": "programmatic",
+    "pass2_description": "Deterministic string replacement. Sort identified PHI by length descending, then replace each exact string with its tag. Guarantees output fidelity (Levenshtein > 0.95 by construction).",
+    "expected_output_format": "Pass 1: JSON lines with {\"text\": \"...\", \"type\": \"...\"} objects. Pass 2: De-identified text via programmatic replacement.",
+    "num_passes": 2,
+    "output_parser": "json_then_replace",
+    "held_out_indices": [],
+    "content_hash": "96ca7d65475000e55b9d9ead767129512ff39864d550a8e92bfa417af5c40414"
+  },
+  "P4_two_pass_llm": {
+    "name": "Two-Pass: Identify then Redact (LLM-based)",
+    "slug": "two-pass-llm",
+    "system_prompt": "You are a clinical text PHI identification system. Your task is to find Protected Health Information in clinical text and report it in structured JSON format.",
+    "pass1_user_template": "Analyze the following clinical text and identify all Protected Health Information (PHI).\n\nFor each PHI element found, output a JSON object on its own line with these fields:\n- \"text\": the exact PHI string as it appears in the input\n- \"type\": one of NAME, LOCATION, DATE, MRN, PHONE, EMAIL, ID\n\nPHI includes: patient/clinician names, hospital/clinic names, addresses, cities, specific dates with day or month, medical record numbers, phone/fax numbers, email addresses, SSNs, and other unique identifiers.\n\nNOT PHI (do not list): disease names, medications, lab values, procedures, ages under 90, years alone, race/ethnicity.\n\nIf no PHI is found, output exactly: []\n\nOutput ONLY the JSON objects, one per line. No other text.\n\nText: {query}",
+    "pass2_system_prompt": "You are a clinical text de-identification system. Replace specified PHI elements with their tags. Output ONLY the redacted text.",
+    "pass2_user_template": "Given the original text and the identified PHI elements below, output the text with each PHI element replaced by its corresponding tag.\n\nOriginal text: {query}\n\nPHI elements to redact:\n{phi_json}\n\nReplace each PHI value with its tag: [NAME], [LOCATION], [DATE], [MRN], [PHONE], [EMAIL], [ID].\nOutput ONLY the redacted text. Do not add or change anything else.",
+    "pass2_mode": "llm",
+    "expected_output_format": "Pass 1: JSON lines. Pass 2: LLM-generated de-identified text.",
+    "num_passes": 2,
+    "output_parser": "json_then_llm_replace",
+    "held_out_indices": [],
+    "comparison_notes": "P4-llm uses the same Pass 1 as P4-prog but replaces programmatic string replacement with an LLM-based Pass 2. Comparing P4-prog vs P4-llm isolates the effect of programmatic replacement on Tier 3 fidelity.",
+    "content_hash": "96ca7d65475000e55b9d9ead767129512ff39864d550a8e92bfa417af5c40414"
+  },
+  "P5_chain_of_thought": {
+    "name": "Chain-of-Thought NER",
+    "slug": "chain-of-thought",
+    "system_prompt": "You are a clinical text analyst specializing in PHI identification. You must reason carefully about each potential identifier before deciding whether to redact it. Your reasoning must be explicit and your final output must be precise.",
+    "user_template": "Analyze the following clinical text for Protected Health Information (PHI).\n\nSTEP 1: Identify every candidate entity (names, places, dates, numbers, codes) in the text. For each candidate, reason about whether it is PHI or clinical content:\n- Is this a patient/clinician name, or a disease/drug/procedure name?\n- Is this a specific facility/address, or a generic clinical reference?\n- Is this a specific date (day+month), or just a year?\n- Is this an identifier (MRN, SSN, email, phone), or a clinical value (lab result, dosage)?\n- Is this an age under 90 (not PHI) or 90+ (PHI)?\n\nSTEP 2: List your redaction decisions. For each confirmed PHI entity, state the replacement tag: [NAME], [LOCATION], [DATE], [MRN], [PHONE], [EMAIL], or [ID].\n\nSTEP 3: Output the de-identified text with all confirmed PHI replaced by tags. Everything else must remain exactly as written.\n\nFormat your response exactly as:\nREASONING:\n[your entity-by-entity analysis]\n\nREDACTIONS:\n[list of \"original text\" -> [TAG] replacements, or \"None\" if no PHI found]\n\nOUTPUT:\n[the de-identified text]\n\nText: {query}",
+    "expected_output_format": "Three sections: REASONING (entity analysis), REDACTIONS (replacement list), OUTPUT (de-identified text). Only the OUTPUT section is used for metric calculation.",
+    "num_passes": 1,
+    "output_parser": "cot_extract",
+    "held_out_indices": [],
+    "inference_overrides": {
+      "num_predict": 2048,
+      "num_ctx": 8192
+    },
+    "content_hash": "519d7e021d88d8ee2ad4ba4cd9487e6ca43576e3e6b535886bb1256727cef5ff"
+  },
+  "_metadata": {
+    "version": "2.0",
+    "date": "2026-02-20",
+    "benchmark": "ASQ-PHI v1.0 (1,051 queries)",
+    "tag_set": [
+      "[NAME]",
+      "[LOCATION]",
+      "[DATE]",
+      "[MRN]",
+      "[PHONE]",
+      "[EMAIL]",
+      "[ID]"
+    ],
+    "content_hash_protocol": "SHA-256 of (system_prompt + '|||' + user_template). Computed at runtime by utils.compute_prompt_hash(). Must match before any evaluation run proceeds.",
+    "models": [
+      "phi4-mini:latest",
+      "llama3.2:3b-instruct-q4_K_M",
+      "qwen3:4b",
+      "gemma3:4b"
+    ],
+    "qwen3_no_think_protocol": "For qwen3-4b, the runner automatically prepends '/no_think\\n' to the beginning of every user prompt to disable Qwen 3's thinking mode. This ensures fair latency and output format comparison across models. If /no_think fails and <think>...</think> blocks appear in output, the runner strips them before evaluation.",
+    "output_parsers": {
+      "direct": "Strip whitespace and common prefixes (Output:, Result:, etc.). Return text as-is.",
+      "json_then_replace": "Parse Pass 1 as JSON lines. Apply programmatic string replacement sorted by length descending. Fall back to LLM Pass 2 on parse failure.",
+      "json_then_llm_replace": "Parse Pass 1 as JSON lines. Send original text + PHI list to LLM for Pass 2 replacement.",
+      "cot_extract": "Find last occurrence of 'OUTPUT:' marker. Extract everything after it. Cascading fallback handles missing markers, repetition collapse, and truncation."
+    }
+  }
+}

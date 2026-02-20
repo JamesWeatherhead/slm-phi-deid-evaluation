@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+
+# Results (large files, generated)
+results/raw/**/*.jsonl
+results/raw/**/*.json
+!results/raw/.gitkeep
+!results/processed/.gitkeep
+!results/analysis/.gitkeep
+
+# But DO track analysis outputs
+!results/analysis/*.csv
+!results/analysis/*.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Secrets
+secrets.env
+*.pem
+*.key
