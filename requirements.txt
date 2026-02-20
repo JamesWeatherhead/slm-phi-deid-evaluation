@@ -1,0 +1,6 @@
+# SLM De-Identification Evaluation Harness
+# Core dependencies only. No heavy ML frameworks needed (inference via Ollama API).
+
+requests>=2.31.0
+numpy>=1.24.0
+scipy>=1.10.0

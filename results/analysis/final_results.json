@@ -1,0 +1,776 @@
+[
+  {
+    "model": "gemma3-4b",
+    "model_label": "Gemma 3 4B",
+    "strategy": "zero-shot-minimal",
+    "strategy_label": "Zero-Shot Minimal",
+    "runs": 3,
+    "tier1_recall_mean": 0.9945,
+    "tier1_recall_std": 0.0001,
+    "tier1_recall_per_run": [
+      0.9946,
+      0.9943,
+      0.9944
+    ],
+    "tier2_recall_mean": 0.9182,
+    "tier2_recall_std": 0.0006,
+    "tier2_precision_mean": 0.7862,
+    "tier2_precision_std": 0.0009,
+    "tier3_similarity_mean": 0.8675,
+    "tier3_similarity_std": 0.0006,
+    "tier3_pass_rate_mean": 0.6006,
+    "specificity_mean": 0.0095,
+    "specificity_std": 0.0004,
+    "over_redaction": 0.9905,
+    "errors": {
+      "total_failures": 147,
+      "timeout": 0,
+      "parse_error": 0,
+      "other": 147
+    },
+    "latency": {
+      "mean_ms": 573.4,
+      "median_ms": 552.0,
+      "p95_ms": 755.0,
+      "p99_ms": 847.0
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 140,
+      "type_b": 3,
+      "type_c": 0,
+      "type_d": 1091
+    }
+  },
+  {
+    "model": "gemma3-4b",
+    "model_label": "Gemma 3 4B",
+    "strategy": "zero-shot-structured",
+    "strategy_label": "Zero-Shot Structured",
+    "runs": 3,
+    "tier1_recall_mean": 0.9613,
+    "tier1_recall_std": 0.0009,
+    "tier1_recall_per_run": [
+      0.9601,
+      0.962,
+      0.962
+    ],
+    "tier2_recall_mean": 0.9195,
+    "tier2_recall_std": 0.0011,
+    "tier2_precision_mean": 0.7716,
+    "tier2_precision_std": 0.0002,
+    "tier3_similarity_mean": 0.8769,
+    "tier3_similarity_std": 0.0002,
+    "tier3_pass_rate_mean": 0.6279,
+    "specificity_mean": 0.1064,
+    "specificity_std": 0.0019,
+    "over_redaction": 0.8936,
+    "errors": {
+      "total_failures": 57,
+      "timeout": 1,
+      "parse_error": 0,
+      "other": 56
+    },
+    "latency": {
+      "mean_ms": 673.2,
+      "median_ms": 561.0,
+      "p95_ms": 667.2,
+      "p99_ms": 725.0
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 59,
+      "type_b": 0,
+      "type_c": 0,
+      "type_d": 762
+    }
+  },
+  {
+    "model": "gemma3-4b",
+    "model_label": "Gemma 3 4B",
+    "strategy": "zero-shot-structured-aggressive",
+    "strategy_label": "Structured (Aggressive)",
+    "runs": 3,
+    "tier1_recall_mean": 0.9627,
+    "tier1_recall_std": 0.0,
+    "tier1_recall_per_run": [
+      0.9627,
+      0.9627,
+      0.9627
+    ],
+    "tier2_recall_mean": 0.9223,
+    "tier2_recall_std": 0.0,
+    "tier2_precision_mean": 0.7411,
+    "tier2_precision_std": 0.0,
+    "tier3_similarity_mean": 0.8558,
+    "tier3_similarity_std": 0.0,
+    "tier3_pass_rate_mean": 0.5661,
+    "specificity_mean": 0.0959,
+    "specificity_std": 0.0,
+    "over_redaction": 0.9041,
+    "errors": {
+      "total_failures": 0,
+      "timeout": 0,
+      "parse_error": 0,
+      "other": 0
+    },
+    "latency": {
+      "mean_ms": 549.5,
+      "median_ms": 549.0,
+      "p95_ms": 652.0,
+      "p99_ms": 696.0
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 66,
+      "type_b": 0,
+      "type_c": 0,
+      "type_d": 789
+    }
+  },
+  {
+    "model": "gemma3-4b",
+    "model_label": "Gemma 3 4B",
+    "strategy": "few-shot",
+    "strategy_label": "Few-Shot",
+    "runs": 3,
+    "tier1_recall_mean": 0.9482,
+    "tier1_recall_std": 0.0,
+    "tier1_recall_per_run": [
+      0.9482,
+      0.9482,
+      0.9482
+    ],
+    "tier2_recall_mean": 0.929,
+    "tier2_recall_std": 0.0,
+    "tier2_precision_mean": 0.9407,
+    "tier2_precision_std": 0.0,
+    "tier3_similarity_mean": 0.9623,
+    "tier3_similarity_std": 0.0,
+    "tier3_pass_rate_mean": 0.9543,
+    "specificity_mean": 0.8858,
+    "specificity_std": 0.0,
+    "over_redaction": 0.1142,
+    "errors": {
+      "total_failures": 0,
+      "timeout": 0,
+      "parse_error": 0,
+      "other": 0
+    },
+    "latency": {
+      "mean_ms": 574.6,
+      "median_ms": 572.0,
+      "p95_ms": 661.0,
+      "p99_ms": 710.5
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 3,
+      "type_b": 0,
+      "type_c": 0,
+      "type_d": 75
+    }
+  },
+  {
+    "model": "gemma3-4b",
+    "model_label": "Gemma 3 4B",
+    "strategy": "two-pass",
+    "strategy_label": "Two-Pass (Programmatic)",
+    "runs": 3,
+    "tier1_recall_mean": 0.9916,
+    "tier1_recall_std": 0.0,
+    "tier1_recall_per_run": [
+      0.9916,
+      0.9916,
+      0.9916
+    ],
+    "tier2_recall_mean": 0.1325,
+    "tier2_recall_std": 0.0,
+    "tier2_precision_mean": 0.1295,
+    "tier2_precision_std": 0.0,
+    "tier3_similarity_mean": 0.1416,
+    "tier3_similarity_std": 0.0,
+    "tier3_pass_rate_mean": 0.0181,
+    "specificity_mean": 0.1005,
+    "specificity_std": 0.0,
+    "over_redaction": 0.8995,
+    "errors": {
+      "total_failures": 0,
+      "timeout": 0,
+      "parse_error": 0,
+      "other": 0
+    },
+    "latency": {
+      "mean_ms": 996.7,
+      "median_ms": 1072.0,
+      "p95_ms": 1320.4,
+      "p99_ms": 1457.0
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 0,
+      "type_b": 663,
+      "type_c": 0,
+      "type_d": 0
+    }
+  },
+  {
+    "model": "gemma3-4b",
+    "model_label": "Gemma 3 4B",
+    "strategy": "two-pass-llm",
+    "strategy_label": "Two-Pass (LLM)",
+    "runs": 3,
+    "tier1_recall_mean": 0.9916,
+    "tier1_recall_std": 0.0,
+    "tier1_recall_per_run": [
+      0.9916,
+      0.9916,
+      0.9916
+    ],
+    "tier2_recall_mean": 0.1338,
+    "tier2_recall_std": 0.0002,
+    "tier2_precision_mean": 0.1309,
+    "tier2_precision_std": 0.0001,
+    "tier3_similarity_mean": 0.1405,
+    "tier3_similarity_std": 0.0,
+    "tier3_pass_rate_mean": 0.0152,
+    "specificity_mean": 0.0868,
+    "specificity_std": 0.0,
+    "over_redaction": 0.9132,
+    "errors": {
+      "total_failures": 0,
+      "timeout": 0,
+      "parse_error": 0,
+      "other": 0
+    },
+    "latency": {
+      "mean_ms": 1013.2,
+      "median_ms": 1076.0,
+      "p95_ms": 1336.0,
+      "p99_ms": 1462.5
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 0,
+      "type_b": 669,
+      "type_c": 0,
+      "type_d": 6
+    }
+  },
+  {
+    "model": "llama32-3b",
+    "model_label": "Llama 3.2 3B",
+    "strategy": "zero-shot-minimal",
+    "strategy_label": "Zero-Shot Minimal",
+    "runs": 3,
+    "tier1_recall_mean": 0.9958,
+    "tier1_recall_std": 0.0,
+    "tier1_recall_per_run": [
+      0.9959,
+      0.9958,
+      0.9958
+    ],
+    "tier2_recall_mean": 0.3268,
+    "tier2_recall_std": 0.0029,
+    "tier2_precision_mean": 0.752,
+    "tier2_precision_std": 0.0002,
+    "tier3_similarity_mean": 0.3444,
+    "tier3_similarity_std": 0.0016,
+    "tier3_pass_rate_mean": 0.0597,
+    "specificity_mean": 0.6443,
+    "specificity_std": 0.0021,
+    "over_redaction": 0.3557,
+    "errors": {
+      "total_failures": 174,
+      "timeout": 0,
+      "parse_error": 0,
+      "other": 174
+    },
+    "latency": {
+      "mean_ms": 313.6,
+      "median_ms": 282.0,
+      "p95_ms": 458.3,
+      "p99_ms": 728.9
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 12,
+      "type_b": 180,
+      "type_c": 0,
+      "type_d": 336
+    }
+  },
+  {
+    "model": "llama32-3b",
+    "model_label": "Llama 3.2 3B",
+    "strategy": "zero-shot-structured",
+    "strategy_label": "Zero-Shot Structured",
+    "runs": 3,
+    "tier1_recall_mean": 0.9926,
+    "tier1_recall_std": 0.0003,
+    "tier1_recall_per_run": [
+      0.9925,
+      0.993,
+      0.9922
+    ],
+    "tier2_recall_mean": 0.8785,
+    "tier2_recall_std": 0.0009,
+    "tier2_precision_mean": 0.7446,
+    "tier2_precision_std": 0.0009,
+    "tier3_similarity_mean": 0.6924,
+    "tier3_similarity_std": 0.0002,
+    "tier3_pass_rate_mean": 0.0864,
+    "specificity_mean": 0.0,
+    "specificity_std": 0.0,
+    "over_redaction": 1.0,
+    "errors": {
+      "total_failures": 206,
+      "timeout": 151,
+      "parse_error": 0,
+      "other": 55
+    },
+    "latency": {
+      "mean_ms": 6267.5,
+      "median_ms": 344.0,
+      "p95_ms": 829.5,
+      "p99_ms": 120103.0
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 131,
+      "type_b": 22,
+      "type_c": 0,
+      "type_d": 1182
+    }
+  },
+  {
+    "model": "llama32-3b",
+    "model_label": "Llama 3.2 3B",
+    "strategy": "zero-shot-structured-aggressive",
+    "strategy_label": "Structured (Aggressive)",
+    "runs": 3,
+    "tier1_recall_mean": 0.9936,
+    "tier1_recall_std": 0.0,
+    "tier1_recall_per_run": [
+      0.9936,
+      0.9936,
+      0.9936
+    ],
+    "tier2_recall_mean": 0.8792,
+    "tier2_recall_std": 0.0,
+    "tier2_precision_mean": 0.7283,
+    "tier2_precision_std": 0.0,
+    "tier3_similarity_mean": 0.6821,
+    "tier3_similarity_std": 0.0,
+    "tier3_pass_rate_mean": 0.0837,
+    "specificity_mean": 0.0046,
+    "specificity_std": 0.0,
+    "over_redaction": 0.9954,
+    "errors": {
+      "total_failures": 0,
+      "timeout": 0,
+      "parse_error": 0,
+      "other": 0
+    },
+    "latency": {
+      "mean_ms": 327.1,
+      "median_ms": 322.0,
+      "p95_ms": 405.0,
+      "p99_ms": 466.5
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 117,
+      "type_b": 24,
+      "type_c": 0,
+      "type_d": 1320
+    }
+  },
+  {
+    "model": "llama32-3b",
+    "model_label": "Llama 3.2 3B",
+    "strategy": "few-shot",
+    "strategy_label": "Few-Shot",
+    "runs": 3,
+    "tier1_recall_mean": 0.9899,
+    "tier1_recall_std": 0.0,
+    "tier1_recall_per_run": [
+      0.9899,
+      0.9899,
+      0.9899
+    ],
+    "tier2_recall_mean": 0.9004,
+    "tier2_recall_std": 0.0,
+    "tier2_precision_mean": 0.8085,
+    "tier2_precision_std": 0.0,
+    "tier3_similarity_mean": 0.8188,
+    "tier3_similarity_std": 0.0,
+    "tier3_pass_rate_mean": 0.4539,
+    "specificity_mean": 0.1826,
+    "specificity_std": 0.0,
+    "over_redaction": 0.8174,
+    "errors": {
+      "total_failures": 0,
+      "timeout": 0,
+      "parse_error": 0,
+      "other": 0
+    },
+    "latency": {
+      "mean_ms": 328.6,
+      "median_ms": 327.0,
+      "p95_ms": 388.0,
+      "p99_ms": 415.5
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 66,
+      "type_b": 6,
+      "type_c": 0,
+      "type_d": 639
+    }
+  },
+  {
+    "model": "llama32-3b",
+    "model_label": "Llama 3.2 3B",
+    "strategy": "two-pass",
+    "strategy_label": "Two-Pass (Programmatic)",
+    "runs": 3,
+    "tier1_recall_mean": 0.9785,
+    "tier1_recall_std": 0.0,
+    "tier1_recall_per_run": [
+      0.9785,
+      0.9785,
+      0.9785
+    ],
+    "tier2_recall_mean": 0.6293,
+    "tier2_recall_std": 0.0,
+    "tier2_precision_mean": 0.5978,
+    "tier2_precision_std": 0.0,
+    "tier3_similarity_mean": 0.6174,
+    "tier3_similarity_std": 0.0,
+    "tier3_pass_rate_mean": 0.4833,
+    "specificity_mean": 0.0502,
+    "specificity_std": 0.0,
+    "over_redaction": 0.9498,
+    "errors": {
+      "total_failures": 0,
+      "timeout": 0,
+      "parse_error": 0,
+      "other": 0
+    },
+    "latency": {
+      "mean_ms": 556.0,
+      "median_ms": 555.0,
+      "p95_ms": 697.0,
+      "p99_ms": 867.3
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 69,
+      "type_b": 357,
+      "type_c": 0,
+      "type_d": 768
+    }
+  },
+  {
+    "model": "llama32-3b",
+    "model_label": "Llama 3.2 3B",
+    "strategy": "two-pass-llm",
+    "strategy_label": "Two-Pass (LLM)",
+    "runs": 3,
+    "tier1_recall_mean": 0.9788,
+    "tier1_recall_std": 0.0,
+    "tier1_recall_per_run": [
+      0.9788,
+      0.9788,
+      0.9788
+    ],
+    "tier2_recall_mean": 0.6068,
+    "tier2_recall_std": 0.0,
+    "tier2_precision_mean": 0.614,
+    "tier2_precision_std": 0.0,
+    "tier3_similarity_mean": 0.6104,
+    "tier3_similarity_std": 0.0,
+    "tier3_pass_rate_mean": 0.4738,
+    "specificity_mean": 0.1689,
+    "specificity_std": 0.0,
+    "over_redaction": 0.8311,
+    "errors": {
+      "total_failures": 0,
+      "timeout": 0,
+      "parse_error": 0,
+      "other": 0
+    },
+    "latency": {
+      "mean_ms": 800.4,
+      "median_ms": 838.0,
+      "p95_ms": 1067.4,
+      "p99_ms": 1223.0
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 54,
+      "type_b": 471,
+      "type_c": 0,
+      "type_d": 480
+    }
+  },
+  {
+    "model": "phi4-mini",
+    "model_label": "Phi-4 Mini",
+    "strategy": "zero-shot-minimal",
+    "strategy_label": "Zero-Shot Minimal",
+    "runs": 3,
+    "tier1_recall_mean": 0.8083,
+    "tier1_recall_std": 0.0,
+    "tier1_recall_per_run": [
+      0.8083,
+      0.8083,
+      0.8083
+    ],
+    "tier2_recall_mean": 0.2984,
+    "tier2_recall_std": 0.0,
+    "tier2_precision_mean": 0.2855,
+    "tier2_precision_std": 0.0,
+    "tier3_similarity_mean": 0.2883,
+    "tier3_similarity_std": 0.0,
+    "tier3_pass_rate_mean": 0.0333,
+    "specificity_mean": 0.1279,
+    "specificity_std": 0.0,
+    "over_redaction": 0.8721,
+    "errors": {
+      "total_failures": 0,
+      "timeout": 0,
+      "parse_error": 0,
+      "other": 0
+    },
+    "latency": {
+      "mean_ms": 9292.5,
+      "median_ms": 5636.0,
+      "p95_ms": 25710.0,
+      "p99_ms": 76598.8
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 27,
+      "type_b": 1866,
+      "type_c": 12,
+      "type_d": 591
+    }
+  },
+  {
+    "model": "phi4-mini",
+    "model_label": "Phi-4 Mini",
+    "strategy": "zero-shot-structured",
+    "strategy_label": "Zero-Shot Structured",
+    "runs": 3,
+    "tier1_recall_mean": 0.9664,
+    "tier1_recall_std": 0.0,
+    "tier1_recall_per_run": [
+      0.9664,
+      0.9664,
+      0.9664
+    ],
+    "tier2_recall_mean": 0.8342,
+    "tier2_recall_std": 0.0,
+    "tier2_precision_mean": 0.7122,
+    "tier2_precision_std": 0.0,
+    "tier3_similarity_mean": 0.7843,
+    "tier3_similarity_std": 0.0,
+    "tier3_pass_rate_mean": 0.4101,
+    "specificity_mean": 0.0959,
+    "specificity_std": 0.0,
+    "over_redaction": 0.9041,
+    "errors": {
+      "total_failures": 0,
+      "timeout": 0,
+      "parse_error": 0,
+      "other": 0
+    },
+    "latency": {
+      "mean_ms": 3170.1,
+      "median_ms": 2881.0,
+      "p95_ms": 4799.0,
+      "p99_ms": 7764.0
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 81,
+      "type_b": 15,
+      "type_c": 0,
+      "type_d": 795
+    }
+  },
+  {
+    "model": "phi4-mini",
+    "model_label": "Phi-4 Mini",
+    "strategy": "zero-shot-structured-aggressive",
+    "strategy_label": "Structured (Aggressive)",
+    "runs": 3,
+    "tier1_recall_mean": 0.9659,
+    "tier1_recall_std": 0.004,
+    "tier1_recall_per_run": [
+      0.9687,
+      0.9687,
+      0.9603
+    ],
+    "tier2_recall_mean": 0.8278,
+    "tier2_recall_std": 0.0043,
+    "tier2_precision_mean": 0.6977,
+    "tier2_precision_std": 0.0125,
+    "tier3_similarity_mean": 0.7717,
+    "tier3_similarity_std": 0.0072,
+    "tier3_pass_rate_mean": 0.392,
+    "specificity_mean": 0.0913,
+    "specificity_std": 0.0129,
+    "over_redaction": 0.9087,
+    "errors": {
+      "total_failures": 0,
+      "timeout": 0,
+      "parse_error": 0,
+      "other": 0
+    },
+    "latency": {
+      "mean_ms": 2482.4,
+      "median_ms": 2591.0,
+      "p95_ms": 4353.4,
+      "p99_ms": 7630.9
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 90,
+      "type_b": 18,
+      "type_c": 0,
+      "type_d": 780
+    }
+  },
+  {
+    "model": "phi4-mini",
+    "model_label": "Phi-4 Mini",
+    "strategy": "few-shot",
+    "strategy_label": "Few-Shot",
+    "runs": 3,
+    "tier1_recall_mean": 0.9494,
+    "tier1_recall_std": 0.002,
+    "tier1_recall_per_run": [
+      0.9521,
+      0.9473,
+      0.9489
+    ],
+    "tier2_recall_mean": 0.7848,
+    "tier2_recall_std": 0.0009,
+    "tier2_precision_mean": 0.808,
+    "tier2_precision_std": 0.0027,
+    "tier3_similarity_mean": 0.6667,
+    "tier3_similarity_std": 0.0075,
+    "tier3_pass_rate_mean": 0.3111,
+    "specificity_mean": 0.4237,
+    "specificity_std": 0.0027,
+    "over_redaction": 0.5763,
+    "errors": {
+      "total_failures": 549,
+      "timeout": 379,
+      "parse_error": 0,
+      "other": 170
+    },
+    "latency": {
+      "mean_ms": 15882.5,
+      "median_ms": 481.0,
+      "p95_ms": 120101.0,
+      "p99_ms": 120102.0
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 26,
+      "type_b": 371,
+      "type_c": 2,
+      "type_d": 197
+    }
+  },
+  {
+    "model": "phi4-mini",
+    "model_label": "Phi-4 Mini",
+    "strategy": "two-pass",
+    "strategy_label": "Two-Pass (Programmatic)",
+    "runs": 3,
+    "tier1_recall_mean": 0.9224,
+    "tier1_recall_std": 0.0,
+    "tier1_recall_per_run": [
+      0.9224,
+      0.9224,
+      0.9224
+    ],
+    "tier2_recall_mean": 0.3027,
+    "tier2_recall_std": 0.0,
+    "tier2_precision_mean": 0.3281,
+    "tier2_precision_std": 0.0,
+    "tier3_similarity_mean": 0.4857,
+    "tier3_similarity_std": 0.0,
+    "tier3_pass_rate_mean": 0.3847,
+    "specificity_mean": 1.0,
+    "specificity_std": 0.0,
+    "over_redaction": 0.0,
+    "errors": {
+      "total_failures": 18,
+      "timeout": 0,
+      "parse_error": 18,
+      "other": 0
+    },
+    "latency": {
+      "mean_ms": 647.2,
+      "median_ms": 719.0,
+      "p95_ms": 1075.4,
+      "p99_ms": 1208.0
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 0,
+      "type_b": 0,
+      "type_c": 0,
+      "type_d": 0
+    }
+  },
+  {
+    "model": "phi4-mini",
+    "model_label": "Phi-4 Mini",
+    "strategy": "two-pass-llm",
+    "strategy_label": "Two-Pass (LLM)",
+    "runs": 3,
+    "tier1_recall_mean": 0.9353,
+    "tier1_recall_std": 0.0,
+    "tier1_recall_per_run": [
+      0.9353,
+      0.9353,
+      0.9353
+    ],
+    "tier2_recall_mean": 0.8729,
+    "tier2_recall_std": 0.0,
+    "tier2_precision_mean": 0.7972,
+    "tier2_precision_std": 0.0,
+    "tier3_similarity_mean": 0.8716,
+    "tier3_similarity_std": 0.0,
+    "tier3_pass_rate_mean": 0.6813,
+    "specificity_mean": 0.3014,
+    "specificity_std": 0.0,
+    "over_redaction": 0.6986,
+    "errors": {
+      "total_failures": 18,
+      "timeout": 0,
+      "parse_error": 18,
+      "other": 0
+    },
+    "latency": {
+      "mean_ms": 1716.5,
+      "median_ms": 1331.0,
+      "p95_ms": 1832.4,
+      "p99_ms": 2404.5
+    },
+    "per_category": {},
+    "fp_taxonomy": {
+      "type_a": 39,
+      "type_b": 192,
+      "type_c": 15,
+      "type_d": 441
+    }
+  }
+]
